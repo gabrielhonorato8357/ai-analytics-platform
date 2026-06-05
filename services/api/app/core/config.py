@@ -13,6 +13,11 @@ class Settings(BaseSettings):
         alias="DATABASE_URL",
     )
     redis_url: str = Field(default="redis://localhost:6379/0", alias="REDIS_URL")
+    jwt_secret_key: str = Field(
+        default="change-me-in-production-32-byte-minimum",
+        alias="JWT_SECRET_KEY",
+    )
+    access_token_expire_minutes: int = Field(default=30, alias="ACCESS_TOKEN_EXPIRE_MINUTES")
     cors_origins: list[str] = Field(
         default_factory=lambda: ["http://localhost:3000"],
         alias="CORS_ORIGINS",

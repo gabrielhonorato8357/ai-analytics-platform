@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -66,9 +67,14 @@ export default function Home() {
                 Query activity, reports, and governance at a glance.
               </p>
             </div>
-            <Badge variant="outline" className="hidden sm:inline-flex">
-              Phase 1 foundation
-            </Badge>
+            <div className="flex items-center gap-3">
+              <Badge variant="outline" className="hidden sm:inline-flex">
+                Phase 2 auth
+              </Badge>
+              <Button asChild variant="outline">
+                <Link href="/login">Sign in</Link>
+              </Button>
+            </div>
           </header>
 
           <div className="flex-1 space-y-5 p-5">
@@ -153,4 +159,3 @@ export default function Home() {
     </main>
   );
 }
-

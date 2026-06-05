@@ -45,5 +45,5 @@ Services:
 ```bash
 make api-test
 make web-typecheck
+make api-migrate
 ```
-
