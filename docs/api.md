@@ -2,6 +2,8 @@
 
 FastAPI generates interactive OpenAPI documentation at `/docs` and the raw OpenAPI schema at `/openapi.json`.
 
+Run `make api-migrate` to apply database migrations and `make api-bootstrap-admin` to create the first superuser.
+
 ## Current Endpoints
 
 ### `POST /api/v1/auth/register`

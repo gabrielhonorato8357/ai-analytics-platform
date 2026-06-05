@@ -46,4 +46,21 @@ Services:
 make api-test
 make web-typecheck
 make api-migrate
+make api-bootstrap-admin
+```
+
+## Bootstrap Admin
+
+Set these values in `.env` before bootstrapping the first administrator:
+
+```bash
+FIRST_SUPERUSER_EMAIL=admin@example.com
+FIRST_SUPERUSER_PASSWORD=change-me-admin-password
+FIRST_SUPERUSER_NAME=Platform Administrator
+```
+
+Then run:
+
+```bash
+make api-bootstrap-admin
 ```

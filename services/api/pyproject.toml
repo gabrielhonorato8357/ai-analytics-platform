@@ -30,6 +30,9 @@ test = [
   "ruff>=0.8.4"
 ]
 
+[project.scripts]
+bootstrap-admin = "app.cli.bootstrap_admin:main"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]

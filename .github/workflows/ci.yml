@@ -28,7 +28,10 @@ jobs:
           pip install -e ".[test]"
 
       - name: Run tests
-        run: pytest
+        run: |
+          ruff check .
+          pytest
+          alembic upgrade head --sql
 
   web:
     name: Web
@@ -51,5 +54,6 @@ jobs:
         run: npm ci
 
       - name: Typecheck
-        run: npm run typecheck
-
+        run: |
+          npm run typecheck
+          npm run build

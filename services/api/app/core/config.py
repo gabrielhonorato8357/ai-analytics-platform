@@ -23,6 +23,12 @@ class Settings(BaseSettings):
     openai_model: str = Field(default="gpt-5.4-mini", alias="OPENAI_MODEL")
     openai_base_url: str = Field(default="https://api.openai.com/v1", alias="OPENAI_BASE_URL")
     max_query_rows: int = Field(default=500, alias="MAX_QUERY_ROWS")
+    first_superuser_email: str | None = Field(default=None, alias="FIRST_SUPERUSER_EMAIL")
+    first_superuser_password: str | None = Field(default=None, alias="FIRST_SUPERUSER_PASSWORD")
+    first_superuser_name: str = Field(
+        default="Platform Administrator",
+        alias="FIRST_SUPERUSER_NAME",
+    )
     cors_origins: list[str] = Field(
         default_factory=lambda: ["http://localhost:3000"],
         alias="CORS_ORIGINS",
