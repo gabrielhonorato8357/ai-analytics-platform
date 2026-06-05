@@ -9,6 +9,7 @@ from app.core.config import Settings, get_settings
 from app.core.security import decode_access_token
 from app.db.postgres import get_session
 from app.models.user import User
+from app.repositories.audit_logs import AuditLogRepository, SqlAlchemyAuditLogRepository
 from app.repositories.reports import SavedReportRepository, SqlAlchemySavedReportRepository
 from app.repositories.users import SqlAlchemyUserRepository, UserRepository
 
@@ -25,6 +26,12 @@ async def get_report_repository(
     session: Annotated[AsyncSession, Depends(get_session)],
 ) -> AsyncGenerator[SavedReportRepository, None]:
     yield SqlAlchemySavedReportRepository(session)
+
+
+async def get_audit_log_repository(
+    session: Annotated[AsyncSession, Depends(get_session)],
+) -> AsyncGenerator[AuditLogRepository, None]:
+    yield SqlAlchemyAuditLogRepository(session)
 
 
 async def get_current_user(
@@ -49,3 +56,15 @@ async def get_current_user(
         )
 
     return user
+
+
+async def get_current_superuser(
+    current_user: Annotated[User, Depends(get_current_user)],
+) -> User:
+    if not current_user.is_superuser:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Superuser privileges are required",
+        )
+
+    return current_user

@@ -26,8 +26,8 @@ const navigation = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/" },
   { label: "Natural query", icon: Search, href: "/query" },
   { label: "Saved reports", icon: FileText, href: "/reports" },
-  { label: "Users", icon: Users },
-  { label: "Audit logs", icon: ShieldCheck },
+  { label: "Users", icon: Users, href: "/users" },
+  { label: "Audit logs", icon: ShieldCheck, href: "/audit-logs" },
 ];
 
 export default function Home() {

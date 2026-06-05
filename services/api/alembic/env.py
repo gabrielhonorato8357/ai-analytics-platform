@@ -8,6 +8,7 @@ from alembic import context
 from app.core.config import get_settings
 from app.db.base import Base
 from app.models import (
+    audit_log,  # noqa: F401
     saved_report,  # noqa: F401
     user,  # noqa: F401
 )

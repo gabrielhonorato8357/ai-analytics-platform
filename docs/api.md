@@ -85,6 +85,28 @@ Returns one saved report owned by the authenticated user.
 
 Deletes one saved report owned by the authenticated user.
 
+### `GET /api/v1/users`
+
+Lists platform users. Requires a superuser bearer token.
+
+### `PATCH /api/v1/users/{user_id}`
+
+Updates managed user fields. Requires a superuser bearer token and writes an audit log entry.
+
+Request body:
+
+```json
+{
+  "full_name": "Grace Analyst",
+  "is_active": true,
+  "is_superuser": false
+}
+```
+
+### `GET /api/v1/audit-logs`
+
+Lists recent platform audit events. Requires a superuser bearer token.
+
 ### `GET /api/v1/health`
 
 Returns application liveness metadata.
@@ -102,5 +124,3 @@ Example response:
 ## Planned Endpoint Groups
 
 - Authentication and session management
-- User management
-- Audit logs

@@ -33,6 +33,26 @@ export type SavedReport = {
   updated_at: string;
 };
 
+export type ManagedUser = {
+  id: string;
+  email: string;
+  full_name: string;
+  is_active: boolean;
+  is_superuser: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type AuditLog = {
+  id: string;
+  actor_user_id: string | null;
+  action: string;
+  resource_type: string;
+  resource_id: string | null;
+  event_metadata: Record<string, unknown>;
+  created_at: string;
+};
+
 function authHeaders(token: string) {
   return {
     Authorization: `Bearer ${token}`,
@@ -137,4 +157,46 @@ export async function deleteReport(token: string, reportId: string): Promise<voi
   if (!response.ok) {
     throw new Error("Unable to delete report");
   }
+}
+
+export async function listUsers(token: string): Promise<ManagedUser[]> {
+  const response = await fetch(`${API_BASE_URL}/api/v1/users`, {
+    headers: authHeaders(token),
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to load users");
+  }
+
+  return response.json() as Promise<ManagedUser[]>;
+}
+
+export async function updateUser(
+  token: string,
+  userId: string,
+  payload: Partial<Pick<ManagedUser, "full_name" | "is_active" | "is_superuser">>,
+): Promise<ManagedUser> {
+  const response = await fetch(`${API_BASE_URL}/api/v1/users/${userId}`, {
+    method: "PATCH",
+    headers: authHeaders(token),
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to update user");
+  }
+
+  return response.json() as Promise<ManagedUser>;
+}
+
+export async function listAuditLogs(token: string, limit = 100): Promise<AuditLog[]> {
+  const response = await fetch(`${API_BASE_URL}/api/v1/audit-logs?limit=${limit}`, {
+    headers: authHeaders(token),
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to load audit logs");
+  }
+
+  return response.json() as Promise<AuditLog[]>;
 }
