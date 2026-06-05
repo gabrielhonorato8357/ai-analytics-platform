@@ -18,6 +18,7 @@ dependencies = [
   "python-multipart>=0.0.20",
   "redis>=5.2.1",
   "sqlalchemy>=2.0.36",
+  "sqlglot>=26.0.0",
   "uvicorn[standard]>=0.34.0"
 ]
 

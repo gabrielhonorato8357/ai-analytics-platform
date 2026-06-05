@@ -18,6 +18,8 @@ class Settings(BaseSettings):
         alias="JWT_SECRET_KEY",
     )
     access_token_expire_minutes: int = Field(default=30, alias="ACCESS_TOKEN_EXPIRE_MINUTES")
+    ai_sql_provider: str = Field(default="disabled", alias="AI_SQL_PROVIDER")
+    max_query_rows: int = Field(default=500, alias="MAX_QUERY_ROWS")
     cors_origins: list[str] = Field(
         default_factory=lambda: ["http://localhost:3000"],
         alias="CORS_ORIGINS",

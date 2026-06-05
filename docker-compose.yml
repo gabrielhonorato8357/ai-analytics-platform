@@ -34,6 +34,8 @@ services:
       REDIS_URL: redis://redis:6379/0
       CORS_ORIGINS: http://localhost:${WEB_PORT:-3000}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change-me-in-production-32-byte-minimum}
+      AI_SQL_PROVIDER: ${AI_SQL_PROVIDER:-disabled}
+      MAX_QUERY_ROWS: ${MAX_QUERY_ROWS:-500}
     ports:
       - "${API_PORT:-8000}:8000"
     depends_on:

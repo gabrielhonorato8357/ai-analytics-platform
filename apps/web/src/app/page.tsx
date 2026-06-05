@@ -22,8 +22,8 @@ const metrics = [
 ];
 
 const navigation = [
-  { label: "Dashboard", icon: LayoutDashboard },
-  { label: "Natural query", icon: Search },
+  { label: "Dashboard", icon: LayoutDashboard, href: "/" },
+  { label: "Natural query", icon: Search, href: "/query" },
   { label: "Saved reports", icon: FileText },
   { label: "Users", icon: Users },
   { label: "Audit logs", icon: ShieldCheck },
@@ -49,11 +49,21 @@ export default function Home() {
             {navigation.map((item) => (
               <Button
                 key={item.label}
+                asChild={Boolean(item.href)}
                 variant={item.label === "Dashboard" ? "secondary" : "ghost"}
                 className="justify-start gap-3"
               >
-                <item.icon className="h-4 w-4" aria-hidden="true" />
-                {item.label}
+                {item.href ? (
+                  <Link href={item.href}>
+                    <item.icon className="h-4 w-4" aria-hidden="true" />
+                    {item.label}
+                  </Link>
+                ) : (
+                  <>
+                    <item.icon className="h-4 w-4" aria-hidden="true" />
+                    {item.label}
+                  </>
+                )}
               </Button>
             ))}
           </nav>

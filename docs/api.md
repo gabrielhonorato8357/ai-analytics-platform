@@ -35,6 +35,25 @@ Request body:
 
 Returns the authenticated user for the supplied `Authorization: Bearer <token>` header.
 
+### `POST /api/v1/queries/generate`
+
+Accepts a natural language analytics question and returns generated SQL when an AI SQL provider is configured.
+
+Current default behavior: returns `503 Service Unavailable` while `AI_SQL_PROVIDER=disabled`.
+
+### `POST /api/v1/queries/execute`
+
+Executes one read-only PostgreSQL `SELECT` query after parser validation and applies a server-side row limit.
+
+Request body:
+
+```json
+{
+  "sql": "select segment, revenue from revenue_by_segment",
+  "limit": 100
+}
+```
+
 ### `GET /api/v1/health`
 
 Returns application liveness metadata.
@@ -52,9 +71,6 @@ Example response:
 ## Planned Endpoint Groups
 
 - Authentication and session management
-- Natural language query submission
-- SQL generation and validation
-- Query execution
 - Saved reports
 - User management
 - Audit logs
