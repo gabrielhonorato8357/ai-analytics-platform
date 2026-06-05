@@ -19,6 +19,20 @@ export type QueryExecutionResponse = {
   executed_sql: string;
 };
 
+export type VisualizationType = "table" | "bar" | "line";
+
+export type SavedReport = {
+  id: string;
+  owner_user_id: string;
+  title: string;
+  description: string | null;
+  sql: string;
+  visualization_type: VisualizationType;
+  chart_config: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+};
+
 function authHeaders(token: string) {
   return {
     Authorization: `Bearer ${token}`,
@@ -79,3 +93,48 @@ export async function executeSql(
   return response.json() as Promise<QueryExecutionResponse>;
 }
 
+export async function listReports(token: string): Promise<SavedReport[]> {
+  const response = await fetch(`${API_BASE_URL}/api/v1/reports`, {
+    headers: authHeaders(token),
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to load reports");
+  }
+
+  return response.json() as Promise<SavedReport[]>;
+}
+
+export async function createReport(
+  token: string,
+  report: {
+    title: string;
+    description?: string;
+    sql: string;
+    visualization_type: VisualizationType;
+    chart_config?: Record<string, unknown>;
+  },
+): Promise<SavedReport> {
+  const response = await fetch(`${API_BASE_URL}/api/v1/reports`, {
+    method: "POST",
+    headers: authHeaders(token),
+    body: JSON.stringify(report),
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to save report");
+  }
+
+  return response.json() as Promise<SavedReport>;
+}
+
+export async function deleteReport(token: string, reportId: string): Promise<void> {
+  const response = await fetch(`${API_BASE_URL}/api/v1/reports/${reportId}`, {
+    method: "DELETE",
+    headers: authHeaders(token),
+  });
+
+  if (!response.ok) {
+    throw new Error("Unable to delete report");
+  }
+}

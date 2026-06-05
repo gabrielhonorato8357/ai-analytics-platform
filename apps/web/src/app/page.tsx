@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
+import { QueryVolumeChart } from "@/components/charts/query-volume-chart";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,12 +25,10 @@ const metrics = [
 const navigation = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/" },
   { label: "Natural query", icon: Search, href: "/query" },
-  { label: "Saved reports", icon: FileText },
+  { label: "Saved reports", icon: FileText, href: "/reports" },
   { label: "Users", icon: Users },
   { label: "Audit logs", icon: ShieldCheck },
 ];
-
-const chartBars = [42, 58, 75, 49, 88, 68, 93, 78, 62, 84, 70, 96];
 
 export default function Home() {
   return (
@@ -106,20 +105,10 @@ export default function Home() {
               <Card>
                 <CardHeader>
                   <CardTitle>Query volume</CardTitle>
-                  <CardDescription>Representative monthly activity for the dashboard shell.</CardDescription>
+                  <CardDescription>Monthly query activity rendered with production charting.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex h-72 items-end gap-3 rounded-md border bg-muted/40 p-4">
-                    {chartBars.map((height, index) => (
-                      <div key={index} className="flex min-w-0 flex-1 flex-col items-center gap-2">
-                        <div
-                          className="w-full rounded-t-md bg-primary"
-                          style={{ height: `${height}%` }}
-                        />
-                        <span className="text-xs text-muted-foreground">{index + 1}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <QueryVolumeChart />
                 </CardContent>
               </Card>
 

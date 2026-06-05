@@ -54,6 +54,37 @@ Request body:
 }
 ```
 
+### `GET /api/v1/reports`
+
+Lists saved reports owned by the authenticated user.
+
+### `POST /api/v1/reports`
+
+Creates a saved report for the authenticated user.
+
+Request body:
+
+```json
+{
+  "title": "Revenue by segment",
+  "description": "Quarterly revenue report",
+  "sql": "select segment, revenue from revenue_by_segment",
+  "visualization_type": "bar",
+  "chart_config": {
+    "xKey": "segment",
+    "yKey": "revenue"
+  }
+}
+```
+
+### `GET /api/v1/reports/{report_id}`
+
+Returns one saved report owned by the authenticated user.
+
+### `DELETE /api/v1/reports/{report_id}`
+
+Deletes one saved report owned by the authenticated user.
+
 ### `GET /api/v1/health`
 
 Returns application liveness metadata.
@@ -71,6 +102,5 @@ Example response:
 ## Planned Endpoint Groups
 
 - Authentication and session management
-- Saved reports
 - User management
 - Audit logs

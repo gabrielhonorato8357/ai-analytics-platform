@@ -9,6 +9,7 @@ from app.core.config import Settings, get_settings
 from app.core.security import decode_access_token
 from app.db.postgres import get_session
 from app.models.user import User
+from app.repositories.reports import SavedReportRepository, SqlAlchemySavedReportRepository
 from app.repositories.users import SqlAlchemyUserRepository, UserRepository
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
@@ -18,6 +19,12 @@ async def get_user_repository(
     session: Annotated[AsyncSession, Depends(get_session)],
 ) -> AsyncGenerator[UserRepository, None]:
     yield SqlAlchemyUserRepository(session)
+
+
+async def get_report_repository(
+    session: Annotated[AsyncSession, Depends(get_session)],
+) -> AsyncGenerator[SavedReportRepository, None]:
+    yield SqlAlchemySavedReportRepository(session)
 
 
 async def get_current_user(
@@ -42,4 +49,3 @@ async def get_current_user(
         )
 
     return user
-
