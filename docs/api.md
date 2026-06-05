@@ -39,7 +39,13 @@ Returns the authenticated user for the supplied `Authorization: Bearer <token>` 
 
 Accepts a natural language analytics question and returns generated SQL when an AI SQL provider is configured.
 
-Current default behavior: returns `503 Service Unavailable` while `AI_SQL_PROVIDER=disabled`.
+Configuration:
+
+- `AI_SQL_PROVIDER=disabled`: returns `503 Service Unavailable`
+- `AI_SQL_PROVIDER=local`: uses a deterministic local development generator
+- `AI_SQL_PROVIDER=openai`: calls the OpenAI Responses API with Structured Outputs
+
+OpenAI configuration requires `OPENAI_API_KEY`; `OPENAI_MODEL` defaults to `gpt-5.4-mini`.
 
 ### `POST /api/v1/queries/execute`
 

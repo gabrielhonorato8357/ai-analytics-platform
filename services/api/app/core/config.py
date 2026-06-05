@@ -19,6 +19,9 @@ class Settings(BaseSettings):
     )
     access_token_expire_minutes: int = Field(default=30, alias="ACCESS_TOKEN_EXPIRE_MINUTES")
     ai_sql_provider: str = Field(default="disabled", alias="AI_SQL_PROVIDER")
+    openai_api_key: str | None = Field(default=None, alias="OPENAI_API_KEY")
+    openai_model: str = Field(default="gpt-5.4-mini", alias="OPENAI_MODEL")
+    openai_base_url: str = Field(default="https://api.openai.com/v1", alias="OPENAI_BASE_URL")
     max_query_rows: int = Field(default=500, alias="MAX_QUERY_ROWS")
     cors_origins: list[str] = Field(
         default_factory=lambda: ["http://localhost:3000"],
