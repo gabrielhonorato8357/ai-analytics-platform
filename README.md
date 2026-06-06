@@ -1,5 +1,14 @@
 # AI Analytics Platform
 
+[![CI](https://github.com/gabrielhonorato8357/ai-analytics-platform/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/gabrielhonorato8357/ai-analytics-platform/actions/workflows/ci.yml)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=nextdotjs&logoColor=white)](apps/web)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178c6?logo=typescript&logoColor=white)](apps/web/package.json)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.128-009688?logo=fastapi&logoColor=white)](services/api)
+[![Python](https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white)](services/api/pyproject.toml)
+[![Docker Compose](https://img.shields.io/badge/Docker%20Compose-ready-2496ed?logo=docker&logoColor=white)](docker-compose.yml)
+[![Last commit](https://img.shields.io/github/last-commit/gabrielhonorato8357/ai-analytics-platform)](https://github.com/gabrielhonorato8357/ai-analytics-platform/commits/main)
+[![Issues](https://img.shields.io/github/issues/gabrielhonorato8357/ai-analytics-platform)](https://github.com/gabrielhonorato8357/ai-analytics-platform/issues)
+
 Production-oriented analytics platform for natural language data exploration.
 
 ## Stack
