@@ -30,6 +30,12 @@ docs/
 
 ## Local Development
 
+Prerequisites:
+
+- Docker and Docker Compose
+- Node.js 22 for the web app
+- Python 3.12 for the API service
+
 ```bash
 cp .env.example .env
 docker compose up --build
