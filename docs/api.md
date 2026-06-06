@@ -4,6 +4,13 @@ FastAPI generates interactive OpenAPI documentation at `/docs` and the raw OpenA
 
 Run `make api-migrate` to apply database migrations and `make api-bootstrap-admin` to create the first superuser.
 
+## Authentication
+
+Authenticated endpoints require an `Authorization: Bearer <token>` header returned by
+`POST /api/v1/auth/register` or `POST /api/v1/auth/login`.
+
+Administrator-only endpoints require the authenticated user to have `is_superuser=true`.
+
 ## Current Endpoints
 
 ### `POST /api/v1/auth/register`
