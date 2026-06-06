@@ -58,6 +58,7 @@ Services:
 ## Development Commands
 
 ```bash
+make verify
 make api-test
 make web-typecheck
 make api-migrate
