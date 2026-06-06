@@ -1,4 +1,4 @@
-.PHONY: api-test api-migrate api-bootstrap-admin web-typecheck docker-up docker-down
+.PHONY: api-test api-migrate api-bootstrap-admin web-typecheck verify docker-up docker-down
 
 api-test:
 	cd services/api && pytest
@@ -11,6 +11,8 @@ api-bootstrap-admin:
 
 web-typecheck:
 	cd apps/web && npm run typecheck
+
+verify: api-test web-typecheck
 
 docker-up:
 	docker compose up --build
